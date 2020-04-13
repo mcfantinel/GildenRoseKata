@@ -164,4 +164,14 @@ class GildedRoseTest {
         assertEquals(31, app.items[3].quality);
     }
 
+    @Test
+    void conjuredItemsQualityUpdate_SimpleUpdate() {
+        int numberOfDays = 5;
+        Item[] items = new Item[] { new Item("Conjured", 5, 11) };
+        GildedRose app = new GildedRose(items);
+        updateQualityByNumberOfDays(app, numberOfDays);
+        assertEquals(0, app.items[0].sellIn);
+        assertEquals(1, app.items[0].quality);
+    }
+
 }
