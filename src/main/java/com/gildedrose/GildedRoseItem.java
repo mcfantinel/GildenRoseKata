@@ -25,4 +25,9 @@ public class GildedRoseItem extends Item {
   public int getQualityDegradation() {
     return qualityDegradation;
   }
+
+  @Override
+  public String toString() {
+    return this.name + ", " + this.sellIn + ", " + this.quality + ", " + this.itemType + ", " + this.qualityDegradation;
+  }
 }

@@ -137,7 +137,7 @@ class GildedRoseTest {
         GildedRoseItem agedBrie = new GildedRoseItem("Aged Brie", 30, 30, ItemType.SIMPLE_ITEM, -1);
         GildedRoseItem legendaryGildedRoseItem = new GildedRoseItem("Sulfuras, Hand of Ragnaros", 30, 80, ItemType.LEGENDARY_ITEM);
         GildedRoseItem backstagePass = new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 30, 30, ItemType.TICKETS);
-        GildedRoseItem conjured = new GildedRoseItem("Conjured", 30, 30, ItemType.SIMPLE_ITEM, 2);
+        GildedRoseItem conjured = new GildedRoseItem("Conjured Mana Cake", 30, 30, ItemType.SIMPLE_ITEM, 2);
         GildedRoseItem[] items = new GildedRoseItem[] {
           simpleGildedRoseItem,
           agedBrie,
@@ -173,7 +173,7 @@ class GildedRoseTest {
     @Test
     void conjuredGildedRoseItemsQualityUpdate_SimpleUpdate() {
         int numberOfDays = 5;
-        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Conjured", 5, 11, ItemType.SIMPLE_ITEM, 1) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Conjured Mana Cake", 5, 11, ItemType.SIMPLE_ITEM, 1) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].sellIn);

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Test class created to keep previous testing scenarios that use deprecated classes from the application
  * This set of tests are executing to make sure we keep backwards compatibility with previous versions
+ * BC stands for backwards compatibility in the class name
  */
 public class GildedRoseBCTest {
   void updateQualityByNumberOfDays(GildedRose app, int numberOfDays) {
@@ -140,7 +141,7 @@ public class GildedRoseBCTest {
     Item agedBrie = new Item("Aged Brie", 30, 30);
     Item legendaryItem = new Item("Sulfuras, Hand of Ragnaros", 30, 80);
     Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 30, 30);
-    Item conjured = new Item("Conjured", 30, 30);
+    Item conjured = new Item("Conjured Mana Cake", 30, 30);
     Item[] items = new Item[] {
       simpleItem,
       agedBrie,
@@ -176,7 +177,7 @@ public class GildedRoseBCTest {
   @Test
   void conjuredItemsQualityUpdate_SimpleUpdate() {
     int numberOfDays = 5;
-    Item[] items = new Item[] { new Item("Conjured", 5, 11) };
+    Item[] items = new Item[] { new Item("Conjured Mana Cake", 5, 11) };
     GildedRose app = new GildedRose(items);
     updateQualityByNumberOfDays(app, numberOfDays);
     assertEquals(0, app.items[0].sellIn);
