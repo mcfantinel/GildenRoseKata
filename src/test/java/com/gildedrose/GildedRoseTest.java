@@ -15,7 +15,7 @@ class GildedRoseTest {
     @Test
     void itemUpdate() {
         int numberOfDays = 5;
-        Item[] items = new Item[] { new Item("Item", 5, 5) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Item", 5, 5, ItemType.SIMPLE_ITEM) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].sellIn);
@@ -25,7 +25,7 @@ class GildedRoseTest {
     @Test
     void itemQualityUpdate_NonNegativeQuality() {
         int numberOfDays = 1;
-        Item[] items = new Item[] { new Item("Item", 0, 0) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Item", 0, 0, ItemType.SIMPLE_ITEM) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].quality);
@@ -34,7 +34,7 @@ class GildedRoseTest {
     @Test
     void itemQualityUpdate_NegativeSellIn() {
         int numberOfDays = 2;
-        Item[] items = new Item[] { new Item("Item", 0, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Item", 0, 10, ItemType.SIMPLE_ITEM) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(-2, app.items[0].sellIn);
@@ -44,7 +44,7 @@ class GildedRoseTest {
     @Test
     void agedBrieUpdate_SimpleUpdate() {
         int numberOfDays = 5;
-        Item[] items = new Item[] { new Item("Aged Brie", 5, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Aged Brie", 5, 10, ItemType.SIMPLE_ITEM, -1) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].sellIn);
@@ -54,7 +54,7 @@ class GildedRoseTest {
     @Test
     void agedBrieUpdate_NegativeSellIn() {
         int numberOfDays = 7;
-        Item[] items = new Item[] { new Item("Aged Brie", 5, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Aged Brie", 5, 10, ItemType.SIMPLE_ITEM, -1) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(-2, app.items[0].sellIn);
@@ -64,16 +64,16 @@ class GildedRoseTest {
     @Test
     void agedBrieUpdate_QualityBelow50() {
         int numberOfDays = 3;
-        Item[] items = new Item[] { new Item("Aged Brie", 5, 49) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Aged Brie", 5, 49, ItemType.SIMPLE_ITEM, -1) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(50, app.items[0].quality);
     }
 
     @Test
-    void legendaryItemUpdate_NoChanges() {
+    void legendaryGildedRoseItemUpdate_NoChanges() {
         int numberOfDays = 10;
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 5, 80) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Sulfuras, Hand of Ragnaros", 5, 80, ItemType.LEGENDARY_ITEM) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(5, app.items[0].sellIn);
@@ -83,7 +83,7 @@ class GildedRoseTest {
     @Test
     void backstagePassesQualityUpdate_SellInGreaterThan10() {
         int numberOfDays = 5;
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 30, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 30, 10, ItemType.TICKETS) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, 5);
         assertEquals(25, app.items[0].sellIn);
@@ -93,7 +93,7 @@ class GildedRoseTest {
     @Test
     void backstagePassesQualityUpdate_SellInBetween10And5() {
         int numberOfDays = 3;
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 11, 10, ItemType.TICKETS) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(8, app.items[0].sellIn);
@@ -103,7 +103,7 @@ class GildedRoseTest {
     @Test
     void backstagePassesQualityUpdate_SellInBelow5() {
         int numberOfDays = 3;
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 6, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 6, 10, ItemType.TICKETS) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(3, app.items[0].sellIn);
@@ -113,7 +113,7 @@ class GildedRoseTest {
     @Test
     void backstagePassesQualityUpdate_SellIn0() {
         int numberOfDays = 2;
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 2, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 2, 10, ItemType.TICKETS) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].sellIn);
@@ -123,7 +123,7 @@ class GildedRoseTest {
     @Test
     void backstagePassesQualityUpdate_SellInNegative() {
         int numberOfDays = 4;
-        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 2, 10) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 2, 10, ItemType.TICKETS) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(-2, app.items[0].sellIn);
@@ -131,23 +131,25 @@ class GildedRoseTest {
     }
 
     @Test
-    void insertAllItems() {
+    void insertAllGildedRoseItems() {
         int numberOfDays = 1;
-        Item simpleItem = new Item("Simple Item", 30, 30);
-        Item agedBrie = new Item("Aged Brie", 30, 30);
-        Item legendaryItem = new Item("Sulfuras, Hand of Ragnaros", 30, 80);
-        Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 30, 30);
-        Item[] items = new Item[] {
-          simpleItem,
+        GildedRoseItem simpleGildedRoseItem = new GildedRoseItem("Simple GildedRoseItem", 30, 30, ItemType.SIMPLE_ITEM, 1);
+        GildedRoseItem agedBrie = new GildedRoseItem("Aged Brie", 30, 30, ItemType.SIMPLE_ITEM, -1);
+        GildedRoseItem legendaryGildedRoseItem = new GildedRoseItem("Sulfuras, Hand of Ragnaros", 30, 80, ItemType.LEGENDARY_ITEM);
+        GildedRoseItem backstagePass = new GildedRoseItem("Backstage passes to a TAFKAL80ETC concert", 30, 30, ItemType.TICKETS);
+        GildedRoseItem conjured = new GildedRoseItem("Conjured", 30, 30, ItemType.SIMPLE_ITEM, 2);
+        GildedRoseItem[] items = new GildedRoseItem[] {
+          simpleGildedRoseItem,
           agedBrie,
-          legendaryItem,
-          backstagePass
+          legendaryGildedRoseItem,
+          backstagePass,
+          conjured
         };
 
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
 
-        // Simple Item
+        // Simple GildedRoseItem
         assertEquals(29, app.items[0].sellIn);
         assertEquals(29, app.items[0].quality);
 
@@ -162,12 +164,16 @@ class GildedRoseTest {
         // Backstage ticket
         assertEquals(29, app.items[3].sellIn);
         assertEquals(31, app.items[3].quality);
+
+        // Conjured ticket
+        assertEquals(29, app.items[4].sellIn);
+        assertEquals(27, app.items[4].quality);
     }
 
     @Test
-    void conjuredItemsQualityUpdate_SimpleUpdate() {
+    void conjuredGildedRoseItemsQualityUpdate_SimpleUpdate() {
         int numberOfDays = 5;
-        Item[] items = new Item[] { new Item("Conjured", 5, 11) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Conjured", 5, 11, ItemType.SIMPLE_ITEM, 1) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].sellIn);
