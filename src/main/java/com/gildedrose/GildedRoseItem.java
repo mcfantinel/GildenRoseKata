@@ -1,9 +1,15 @@
 package com.gildedrose;
 
+/**
+ * Class created to model gilded rose items
+ */
 public class GildedRoseItem extends Item {
 
   private ItemType itemType;
 
+  // It quantifies how much an item should degrade its quality per update
+  // A negative quality degradation means that the item gains quality over an update
+  // This is only considered for items with type SIMPLE_ITEM
   private int qualityDegradation;
 
   public GildedRoseItem(String name, int sellIn, int quality, ItemType itemType, int qualityDegradation) {
@@ -18,6 +24,7 @@ public class GildedRoseItem extends Item {
     this.qualityDegradation = 1;
   }
 
+  // Builds a GildedRoseItem from an Item class
   public static GildedRoseItem gildedRoseItemBuilder(Item item) {
     String itemName = item.name;
     ItemType itemType = GildedRoseItem.getItemTypeByItemName(itemName);

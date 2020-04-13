@@ -8,6 +8,7 @@ class GildedRose {
     this.items = items;
   }
 
+  // Updates the quality of all gilded rose items on stock
   public void updateQuality() {
     for (Item item : items) {
       GildedRoseItem gildedRoseItem;
