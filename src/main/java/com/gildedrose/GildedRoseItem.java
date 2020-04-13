@@ -12,6 +12,12 @@ public class GildedRoseItem extends Item {
     this.qualityDegradation = qualityDegradation;
   }
 
+  public GildedRoseItem(String name, int sellIn, int quality, ItemType itemType) {
+    super(name, sellIn, quality);
+    this.itemType = itemType;
+    this.qualityDegradation = 1;
+  }
+
   public ItemType getItemType() {
     return itemType;
   }
