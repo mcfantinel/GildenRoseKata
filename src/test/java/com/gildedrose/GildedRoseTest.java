@@ -165,15 +165,15 @@ class GildedRoseTest {
         assertEquals(29, app.items[3].sellIn);
         assertEquals(31, app.items[3].quality);
 
-        // Conjured ticket
+        // Conjured
         assertEquals(29, app.items[4].sellIn);
-        assertEquals(27, app.items[4].quality);
+        assertEquals(28, app.items[4].quality);
     }
 
     @Test
     void conjuredGildedRoseItemsQualityUpdate_SimpleUpdate() {
         int numberOfDays = 5;
-        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Conjured Mana Cake", 5, 11, ItemType.SIMPLE_ITEM, 1) };
+        GildedRoseItem[] items = new GildedRoseItem[] { new GildedRoseItem("Conjured Mana Cake", 5, 11, ItemType.SIMPLE_ITEM, 2) };
         GildedRose app = new GildedRose(items);
         updateQualityByNumberOfDays(app, numberOfDays);
         assertEquals(0, app.items[0].sellIn);

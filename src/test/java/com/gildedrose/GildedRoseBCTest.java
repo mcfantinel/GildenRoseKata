@@ -169,9 +169,9 @@ public class GildedRoseBCTest {
     assertEquals(29, app.items[3].sellIn);
     assertEquals(31, app.items[3].quality);
 
-    // Conjured ticket
+    // Conjured
     assertEquals(29, app.items[4].sellIn);
-    assertEquals(27, app.items[4].quality);
+    assertEquals(28, app.items[4].quality);
   }
 
   @Test
